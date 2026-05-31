@@ -2,6 +2,7 @@ import express, {Request, Response, Application} from 'express'
 import { connectDB } from './config/db';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import authRoutes from "./routes/authRoutes";
 
 dotenv.config();
 
@@ -17,7 +18,9 @@ app.get('/health', (req : Request, res : Response) => {
     res.status(200).json({
         status : 'server running'
     });
-})
+});
+
+app.use('/api/auth', authRoutes);
 
 app.listen(PORT, () => {
     console.log(`server running at port ${PORT}`);
