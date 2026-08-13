@@ -50,3 +50,9 @@ if [ ! -f /app/.indexed ]; then
 
     touch /app/.indexed
     echo "[OK] Setup completed successfully. Launching server..."
+else
+    echo "[INFO] Store already indexed, skipping setup routine."
+    echo "[INFO] Launching server..."
+fi
+
+exec "$@"
