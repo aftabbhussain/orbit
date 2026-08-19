@@ -1,18 +1,22 @@
 import os
+import time
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from loguru import logger
 
 RAW_DIR = Path("data/raw")
-
 CATEGORIES = ["cs.CL", "cs.AI", "cs.LG"]
 
-def build_query(categories=CATEGORIES, max_results=20):
-    cat_query = "+OR+".join([f"cat:{c}" for c in categories])
-    return f"http://export.arxiv.org/api/query?search_query={cat_query}&max_results={max_results}&sortBy=submittedDate&sortOrder=descending"
-
-def fetch_papers():
-    RAW_DIR.mkdir(parents=True, exist_ok=True)
-    url = build_query()
-    logger.info(f"Fetching from URL: {url}")
+def download_with_retry(url, target_path, max_retries=3):
+    for attempt in range(max_retries):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "ResearchAssistant/1.0"})
+            with urllib.request.urlopen(req, timeout=30) as resp, open(target_path, "wb") as out:
+                out.write(resp.read())
+            logger.info(f"Successfully downloaded {target_path.name}")
+            return True
+        except Exception as e:
+            logger.warning(f"Download error on {url} (attempt {attempt+1}): {e}")
+            time.sleep(2)
+    return False
