@@ -1,13 +1,11 @@
 """
-Paper Fetcher Utility
-Fetches recent and foundational academic machine learning research papers from arXiv.
-Supports batch downloading, XML feed parsing, and automatic deduplication.
+Paper Fetcher Utility with Rate-Limiting Protection
 """
 import os
 import time
 import urllib.request
-import xml.etree.ElementTree as ET
 from pathlib import Path
 from loguru import logger
 
 RAW_DIR = Path("data/raw")
+API_DELAY_SECONDS = 3.0
