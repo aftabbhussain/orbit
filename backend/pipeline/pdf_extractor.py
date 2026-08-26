@@ -4,12 +4,11 @@ from pathlib import Path
 from pypdf import PdfReader
 from loguru import logger
 
-def clean_extracted_text(text: str) -> str:
-    text = re.sub(r"-\n", "", text)
-    text = re.sub(r"\s+", " ", text)
-    return text.strip()
-
-SECTION_REGEX = re.compile(
-    r"^\s*(?:\d+\.?\s*)?(abstract|introduction|related\s+work|method|experiments?|results?|conclusion|references)\b",
-    re.IGNORECASE | re.MULTILINE
-)
+def chunk_text(text: str, chunk_size: int = 1000, overlap: int = 150) -> list[str]:
+    chunks = []
+    start = 0
+    while start < len(text):
+        end = start + chunk_size
+        chunks.append(text[start:end])
+        start += (chunk_size - overlap)
+    return chunks
