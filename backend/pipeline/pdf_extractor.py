@@ -4,6 +4,7 @@ from pathlib import Path
 from pypdf import PdfReader
 from loguru import logger
 
-SECTION_PATTERNS = [
-    r"^(?:abstract|introduction|related work|background|methodology|methods|experiments|results|discussion|conclusion|references)\b"
-]
+def clean_extracted_text(text: str) -> str:
+    text = re.sub(r"-\n", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
