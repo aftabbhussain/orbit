@@ -8,3 +8,8 @@ def clean_extracted_text(text: str) -> str:
     text = re.sub(r"-\n", "", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
+
+SECTION_REGEX = re.compile(
+    r"^\s*(?:\d+\.?\s*)?(abstract|introduction|related\s+work|method|experiments?|results?|conclusion|references)\b",
+    re.IGNORECASE | re.MULTILINE
+)
