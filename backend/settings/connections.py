@@ -1,7 +1,10 @@
+from qdrant_client import QdrantClient
 from loguru import logger
-from backend.settings.environment import get_settings
 
-class ConnectionManager:
-    def __init__(self):
-        self._qdrant = None
-        self._es = None
+_qdrant_client = None
+
+def get_qdrant_client() -> QdrantClient:
+    global _qdrant_client
+    if _qdrant_client is None:
+        _qdrant_client = QdrantClient("http://localhost:6333")
+    return _qdrant_client
