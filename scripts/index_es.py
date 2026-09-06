@@ -4,7 +4,15 @@ root_path = Path(__file__).parent.parent.resolve()
 if str(root_path) not in sys.path:
     sys.path.insert(0, str(root_path))
 
-from elasticsearch import Elasticsearch
-from loguru import logger
-
 INDEX_NAME = "arxiv_documents"
+INDEX_MAPPINGS = {
+    "settings": {
+        "analysis": {
+            "analyzer": {
+                "default": {
+                    "type": "standard"
+                }
+            }
+        }
+    }
+}
