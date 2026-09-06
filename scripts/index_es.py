@@ -1,18 +1,15 @@
 import sys
+import json
 from pathlib import Path
-root_path = Path(__file__).parent.parent.resolve()
-if str(root_path) not in sys.path:
-    sys.path.insert(0, str(root_path))
+from elasticsearch.helpers import bulk
+from loguru import logger
 
-INDEX_NAME = "arxiv_documents"
-INDEX_MAPPINGS = {
-    "settings": {
-        "analysis": {
-            "analyzer": {
-                "default": {
-                    "type": "standard"
-                }
+def generate_actions(corpus_path, index_name):
+    with open(corpus_path, "r", encoding="utf-8") as f:
+        for line in f:
+            doc = json.loads(line)
+            yield {
+                "_index": index_name,
+                "_id": doc.get("chunk_id", doc.get("arxiv_id")),
+                "_source": doc
             }
-        }
-    }
-}
