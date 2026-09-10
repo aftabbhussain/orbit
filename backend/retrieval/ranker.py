@@ -1,2 +1,2 @@
-def truncate_text(text: str, max_chars: int = 2000) -> str:
-    return text[:max_chars] if len(text) > max_chars else text
+def filter_by_score(candidates, min_score: float = 0.15):
+    return [c for c in candidates if c.get("score", 0) >= min_score]
