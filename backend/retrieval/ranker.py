@@ -1,4 +1,5 @@
-from sentence_transformers import CrossEncoder
 from loguru import logger
 
-reranker_model = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
+def score_pairs(query, documents):
+    pairs = [(query, d.get("content", "")) for d in documents]
+    return pairs
