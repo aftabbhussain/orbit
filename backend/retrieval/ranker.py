@@ -1,7 +1,4 @@
-from collections import defaultdict
+from sentence_transformers import CrossEncoder
 from loguru import logger
 
-class HybridRanker:
-    def fuse_candidates(self, dense_hits, sparse_hits):
-        logger.debug("Merging candidate lists with RRF")
-        return []
+reranker_model = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
