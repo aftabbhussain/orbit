@@ -1,5 +1,2 @@
-from loguru import logger
-
-def score_pairs(query, documents):
-    pairs = [(query, d.get("content", "")) for d in documents]
-    return pairs
+def truncate_text(text: str, max_chars: int = 2000) -> str:
+    return text[:max_chars] if len(text) > max_chars else text
