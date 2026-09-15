@@ -1,12 +1,5 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from backend.contracts import ThoughtRecord, CitationItem
 
-@dataclass
-class ConversationState:
-    query: str
-    messages: list[dict] = field(default_factory=list)
-    thoughts: list[ThoughtRecord] = field(default_factory=list)
-    citations: list[CitationItem] = field(default_factory=list)
-    answer: str = ""
-    next_step: str = "router"
-    loop_count: int = 0
+def copy_state(state: ConversationState, **kwargs) -> ConversationState:
+    return replace(state, **kwargs)
