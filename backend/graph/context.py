@@ -8,3 +8,5 @@ class ConversationState:
     thoughts: list[ThoughtRecord] = field(default_factory=list)
     citations: list[CitationItem] = field(default_factory=list)
     answer: str = ""
+    next_step: str = "router"
+    loop_count: int = 0
