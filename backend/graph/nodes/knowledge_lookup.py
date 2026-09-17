@@ -1,6 +1,7 @@
 from loguru import logger
+from backend.retrieval.ranker import HybridRanker
 from backend.graph.context import ConversationState
 
-def knowledge_lookup_node(state: ConversationState) -> dict:
-    logger.info("Executing knowledge lookup")
-    return {}
+def retrieve_context(query: str):
+    logger.debug(f"Retrieving context for query: {query}")
+    return []
