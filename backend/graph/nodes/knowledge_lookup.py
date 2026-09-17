@@ -1,4 +1,4 @@
-from loguru import logger
+from backend.contracts import ThoughtRecord
 
-def handle_empty_retrieval():
-    logger.warning("No academic literature found for query, flagging fallback")
+def record_retrieval_thought(count: int) -> ThoughtRecord:
+    return ThoughtRecord(thought=f"Retrieved {count} relevant paper chunks from arXiv index", action="knowledge_lookup")
