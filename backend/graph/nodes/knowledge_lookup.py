@@ -1,7 +1,7 @@
-from loguru import logger
-from backend.retrieval.ranker import HybridRanker
-from backend.graph.context import ConversationState
+from backend.contracts import CitationItem
 
-def retrieve_context(query: str):
-    logger.debug(f"Retrieving context for query: {query}")
-    return []
+def format_citations(results: list[dict]) -> list[CitationItem]:
+    items = []
+    for i, res in enumerate(results):
+        items.append(CitationItem(id=i+1, title=res.get("title", ""), content=res.get("content", "")))
+    return items
