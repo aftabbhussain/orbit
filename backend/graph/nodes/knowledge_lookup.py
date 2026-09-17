@@ -1,7 +1,4 @@
-from backend.contracts import CitationItem
+from loguru import logger
 
-def format_citations(results: list[dict]) -> list[CitationItem]:
-    items = []
-    for i, res in enumerate(results):
-        items.append(CitationItem(id=i+1, title=res.get("title", ""), content=res.get("content", "")))
-    return items
+def handle_empty_retrieval():
+    logger.warning("No academic literature found for query, flagging fallback")
