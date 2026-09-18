@@ -1,6 +1,6 @@
+import urllib.request
 from loguru import logger
-from backend.graph.context import ConversationState
 
-def live_web_node(state: ConversationState) -> dict:
-    logger.info("Executing live web search fallback")
-    return {}
+def search_web_api(query: str):
+    logger.debug(f"Web searching: {query}")
+    return []
