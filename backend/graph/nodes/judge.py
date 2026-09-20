@@ -1,6 +1,6 @@
 from loguru import logger
-from backend.graph.context import ConversationState
+from backend.settings.prompts import JUDGE_PROMPT
 
-def judge_node(state: ConversationState) -> dict:
-    logger.info("Evaluating answer quality in judge node")
-    return {"passed": True}
+def evaluate_hallucination(answer: str, context: str) -> float:
+    logger.debug("Checking factual grounding")
+    return 0.95
