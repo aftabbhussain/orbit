@@ -28,3 +28,4 @@ flowchart TB
     subgraph SearchPipeline["Retrieval Pipeline"]
         HybridEngine[Hybrid Retrieval<br/>Dense + BM25 + RRF]
         CrossRerank[Cross-Encoder Reranker]
+
