@@ -1,6 +1,6 @@
-from loguru import logger
-from backend.settings.prompts import JUDGE_PROMPT
+from backend.contracts import ThoughtRecord
 
-def evaluate_hallucination(answer: str, context: str) -> float:
-    logger.debug("Checking factual grounding")
-    return 0.95
+def route_critique(score: float) -> str:
+    if score < 0.7:
+        return "retry_retrieval"
+    return "finish"
