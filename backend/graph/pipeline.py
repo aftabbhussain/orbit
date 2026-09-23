@@ -1,5 +1,4 @@
-from langgraph.graph import StateGraph, END
-from backend.graph.context import ConversationState
+from langgraph.graph import END
 
-def route_decision(state: ConversationState):
-    return state.next_step
+def judge_decision(state):
+    return END
