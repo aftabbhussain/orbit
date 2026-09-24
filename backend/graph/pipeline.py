@@ -1,5 +1,5 @@
-from langgraph.errors import GraphRecursionError
+from langfuse.langchain import CallbackHandler
 from loguru import logger
 
-def safe_run():
-    logger.info("Executing safe graph execution with recursion guard")
+def get_tracer():
+    return CallbackHandler()
