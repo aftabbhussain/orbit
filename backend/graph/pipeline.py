@@ -1,7 +1,5 @@
-from dataclasses import dataclass
+from langgraph.errors import GraphRecursionError
+from loguru import logger
 
-@dataclass
-class WorkflowOutcome:
-    answer: str = ""
-    citations: list = None
-    thoughts: list = None
+def safe_run():
+    logger.info("Executing safe graph execution with recursion guard")
