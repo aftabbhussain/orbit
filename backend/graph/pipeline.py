@@ -1,4 +1,7 @@
-from langgraph.graph import END
+from dataclasses import dataclass
 
-def judge_decision(state):
-    return END
+@dataclass
+class WorkflowOutcome:
+    answer: str = ""
+    citations: list = None
+    thoughts: list = None
