@@ -1,9 +1,9 @@
+from fastapi import Request
 from backend.graph.pipeline import MultiAgentWorkflow
 
-_workflow = None
 
-def get_workflow() -> MultiAgentWorkflow:
-    global _workflow
-    if _workflow is None:
-        _workflow = MultiAgentWorkflow()
-    return _workflow
+def get_workflow(request: Request) -> MultiAgentWorkflow:
+    return request.app.state.workflow
+
+
+get_pipeline = get_workflow
