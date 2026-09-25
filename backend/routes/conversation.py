@@ -1,7 +1,4 @@
-from fastapi import APIRouter
-from fastapi.responses import StreamingResponse
+import json
 
-router = APIRouter(prefix="/chat", tags=["chat"])
-
-async def event_generator():
-    yield "data: {}\n\n"
+def format_sse_chunk(event_type: str, data: dict) -> str:
+    return f"event: {event_type}\ndata: {json.dumps(data)}\n\n"
