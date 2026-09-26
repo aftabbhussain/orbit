@@ -1,4 +1,7 @@
-import json
-
-def format_sse_chunk(event_type: str, data: dict) -> str:
-    return f"event: {event_type}\ndata: {json.dumps(data)}\n\n"
+STEP_DISPATCH = {
+    "router": "Thought: Categorizing intent",
+    "knowledge_lookup": "Thought: Retrieving paper candidates",
+    "live_web": "Thought: Fallback searching web",
+    "writer": "Thought: Synthesizing grounded response",
+    "judge": "Thought: Critiquing factual grounding"
+}
