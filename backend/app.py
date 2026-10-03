@@ -1,7 +1,6 @@
+import os
 import sys
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
-from loguru import logger
 
-logger.remove()
-logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}")
+root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
