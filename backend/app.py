@@ -1,9 +1,7 @@
-from contextlib import asynccontextmanager
-from fastapi import FastAPI
+import sys
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from loguru import logger
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    logger.info("Initializing system dependencies")
-    yield
-    logger.info("Tearing down services")
+logger.remove()
+logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}")
