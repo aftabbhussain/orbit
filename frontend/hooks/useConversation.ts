@@ -1,7 +1,6 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 
 export function useConversation() {
-  const [messages, setMessages] = useState([]);
-  const clearMessages = useCallback(() => setMessages([]), []);
-  return { messages, clearMessages };
+  const isSubmitting = useRef(false);
+  return { isSubmitting };
 }
