@@ -1,11 +1,14 @@
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
+import React, { useState } from 'react';
 import { Message } from '@/types/chat';
 
 export function MessageBubble({ message }: { message: Message }) {
+  const [expanded, setExpanded] = useState(false);
   return (
-    <div className="prose dark:prose-invert max-w-none">
-      <ReactMarkdown>{message.content}</ReactMarkdown>
+    <div>
+      {message.thoughts && (
+        <button onClick={() => setExpanded(!expanded)}>Thoughts ({message.thoughts.length})</button>
+      )}
+      <div>{message.content}</div>
     </div>
   );
 }
