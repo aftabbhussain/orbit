@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Message } from '@/types/chat';
 
 export function MessageBubble({ message }: { message: Message }) {
-  const [expanded, setExpanded] = useState(false);
   return (
     <div>
-      {message.thoughts && (
-        <button onClick={() => setExpanded(!expanded)}>Thoughts ({message.thoughts.length})</button>
-      )}
       <div>{message.content}</div>
+      {message.citations && (
+        <div className="flex gap-2 mt-2">
+          {message.citations.map(c => (
+            <span key={c.id} className="badge">[{c.id}] {c.title}</span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
