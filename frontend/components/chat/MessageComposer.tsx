@@ -1,11 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
-export function MessageComposer({ onSend }: { onSend: (text: string) => void }) {
-  const [input, setInput] = useState('');
-  return (
-    <form onSubmit={(e) => { e.preventDefault(); onSend(input); setInput(''); }}>
-      <input value={input} onChange={e => setInput(e.target.value)} />
-      <button type="submit">Send</button>
-    </form>
-  );
+export function MessageComposer() {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  return <textarea ref={textareaRef} rows={1} />;
 }
