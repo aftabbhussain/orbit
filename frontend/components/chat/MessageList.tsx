@@ -1,14 +1,9 @@
-import React from 'react';
-import { Message } from '@/types/chat';
+import React, { useEffect, useRef } from 'react';
 
-export function MessageItem({ message }: { message: Message }) {
-  return <div>{message.content}</div>;
-}
-
-export function MessageList({ messages }: { messages: Message[] }) {
-  return (
-    <div>
-      {messages.map(m => <MessageItem key={m.id} message={m} />)}
-    </div>
-  );
+export function useScrollToBottom() {
+  const endRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: 'smooth' });
+  });
+  return endRef;
 }
