@@ -1,9 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-
-export function useScrollToBottom() {
-  const endRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth' });
-  });
-  return endRef;
-}
+export const SUGGESTED_QUERIES = [
+  "How does RAG compare to fine-tuning for domain knowledge?",
+  "Explain the attention mechanism in Transformer models",
+  "What are the latest reasoning techniques like Chain-of-Thought?"
+];
