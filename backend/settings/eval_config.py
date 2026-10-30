@@ -1,8 +1,46 @@
-from pydantic_settings import BaseSettings
+import os
+from dataclasses import dataclass
 
-class EvalConfig(BaseSettings):
-    benchmark_dataset: str = "data/test/test_queries.json"
-    hit_rate_k: int = 5
-    mrr_k: int = 10
-    min_faithfulness_score: float = 0.85
-    min_citation_precision: float = 0.80
+
+@dataclass
+class EvaluationSettings:
+    llm_model: str = "openai/gpt-oss-120b"
+    embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
+    sample_rate: float = 0.1
+    batch_size: int = 20
+    enabled: bool = True
+
+    @classmethod
+    def from_env(cls) -> "EvaluationSettings":
+        return cls(
+            llm_model=os.getenv("RAGAS_LLM_MODEL", "openai/gpt-oss-120b"),
+            embedding_model=os.getenv(
+                "RAGAS_EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2"
+            ),
+            sample_rate=float(os.getenv("EVAL_SAMPLE_RATE", "0.1")),
+            batch_size=int(os.getenv("EVAL_BATCH_SIZE", "20")),
+            enabled=os.getenv("EVAL_ENABLED", "true").lower() == "true",
+        )
+
+
+@dataclass
+class QualityCutoffs:
+    faithfulness_threshold: float = 0.7
+    answer_relevancy_threshold: float = 0.7
+    context_precision_threshold: float = 0.6
+
+    @classmethod
+    def from_env(cls) -> "QualityCutoffs":
+        return cls(
+            faithfulness_threshold=float(os.getenv("FAITHFULNESS_THRESHOLD", "0.7")),
+            answer_relevancy_threshold=float(
+                os.getenv("ANSWER_RELEVANCY_THRESHOLD", "0.7")
+            ),
+            context_precision_threshold=float(
+                os.getenv("CONTEXT_PRECISION_THRESHOLD", "0.6")
+            ),
+        )
+
+
+EvaluationConfig = EvaluationSettings
+RAGMetricsConfig = QualityCutoffs
