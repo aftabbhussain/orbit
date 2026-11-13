@@ -32,7 +32,3 @@ easyocr
 tavily-python>=0.3.0
 langchain-tavily>=0.1.0
 llmlingua>=0.2.0
-
-# pdf parsing tools
-pypdf>=3.0.0
-pymupdf>=1.23.0
