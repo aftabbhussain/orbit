@@ -28,27 +28,23 @@ flowchart TB
     subgraph SearchPipeline["Retrieval Pipeline"]
         HybridEngine[Hybrid Retrieval<br/>Dense + BM25 + RRF]
         CrossRerank[Cross-Encoder Reranker]
+        RelevanceJudge[Relevance Verification LLM]
+    end
 
+    subgraph GenerationService["Generation & Fallback"]
+        ModelInference[NVIDIA NIM Model API]
+        ExternalSearch[Tavily Search API]
+    end
 
+    UserQuery --> WebUI
+    WebUI --> FastAPIEndpoint
+    FastAPIEndpoint --> GraphWorkflow
 
+    GraphWorkflow --> HybridEngine
+    HybridEngine --> QdrantStore
+    HybridEngine --> ElasticIndex
+    HybridEngine --> CrossRerank
+    CrossRerank --> RelevanceJudge
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    RelevanceJudge -->|relevant context| ModelInference
+    RelevanceJudge -->|insufficient context| ExternalSearch
