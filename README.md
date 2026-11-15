@@ -158,3 +158,22 @@ The services will initialize:
 
 ```bash
 python -m pip install -r requirements.txt
+uvicorn backend.app:app --host 0.0.0.0 --port 8000 --reload
+```
+
+#### 2. Frontend Application
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## API Endpoints
+
+- `POST /api/chat`: Process user queries with conversational context and streaming reasoning steps.
+- `GET /api/health`: Health status probe for external monitoring.
+- `GET /api/health/ready`: Readiness verification check.
+- `GET /api/health/live`: Liveness verification check.
