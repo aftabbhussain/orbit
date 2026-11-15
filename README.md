@@ -128,3 +128,33 @@ The agent pipeline routes incoming queries through an execution graph:
 ### Environment Setup
 
 Create `.env` based on `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+Set your NVIDIA NIM API key:
+
+```env
+NVIDIA_NIM_API_KEY=your_key_here
+```
+
+### Running with Docker Compose
+
+```bash
+docker compose up --build
+```
+
+The services will initialize:
+- Backend API: `http://localhost:8000`
+- API Documentation: `http://localhost:8000/docs`
+- Frontend Web App: `http://localhost:3000`
+- Elasticsearch: `http://localhost:9200`
+- Qdrant Vector DB: `http://localhost:6333`
+
+### Running Locally
+
+#### 1. Backend Service
+
+```bash
+python -m pip install -r requirements.txt
