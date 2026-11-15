@@ -88,3 +88,43 @@ The agent pipeline routes incoming queries through an execution graph:
 |   |       `-- writer.py       # Grounded answer generation
 |   |-- retrieval/
 |   |   `-- ranker.py           # Qdrant + ES + RRF + Cross-Encoder
+|   |-- settings/
+|   |   |-- environment.py      # Dataclass environment configuration
+|   |   |-- connections.py      # LLM, Qdrant, and ES client factories
+|   |   |-- prompts.py          # System prompts and templates
+|   |   `-- eval_config.py      # Evaluation thresholds
+|   |-- pipeline/
+|   |   `-- pdf_extractor.py    # PDF parsing and document chunking
+|   `-- metrics/
+|       `-- benchmark.py        # RAGAS evaluation metrics runner
+|-- frontend/
+|   |-- app/                    # Next.js app router
+|   |-- components/chat/        # React interface components
+|   |-- hooks/                  # Client conversation state hook
+|   |-- services/               # HTTP client service
+|   `-- types/                  # TypeScript interface declarations
+|-- scripts/
+|   |-- entrypoint.sh           # Docker initialization sequence
+|   |-- fetch_papers.py         # Automated arXiv PDF downloader
+|   |-- extract_corpus.py       # PDF batch text processor
+|   |-- index_es.py             # Elasticsearch index setup and ingestion
+|   `-- index_qdrant.py         # Qdrant collection setup and vector upsert
+|-- tests/                      # Pytest unit tests and evaluation suite
+|-- docker-compose.yml          # Container configuration
+|-- Dockerfile                  # Backend build definition
+|-- requirements.txt            # Python dependencies
+`-- pyproject.toml              # Build tool specifications
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Docker and Docker Compose
+- Or Python 3.11+ and Node.js 18+
+
+### Environment Setup
+
+Create `.env` based on `.env.example`:
