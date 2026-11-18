@@ -177,3 +177,4 @@ npm run dev
 - `GET /api/health`: Health status probe for external monitoring.
 - `GET /api/health/ready`: Readiness verification check.
 - `GET /api/health/live`: Liveness verification check.
+
