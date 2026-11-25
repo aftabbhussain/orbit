@@ -1,8 +1,11 @@
-# Academic Research Assistant
+# Orbit
 
 Agentic RAG platform for querying and synthesizing insights from arXiv machine learning research papers using hybrid vector-lexical retrieval and ReAct agent workflows.
 
 ---
+## Video Demo
+
+https://github.com/user-attachments/assets/b063e27c-434e-404a-9848-6c328082f921
 
 ## System Architecture
 
